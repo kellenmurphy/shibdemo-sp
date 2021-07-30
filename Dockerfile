@@ -15,17 +15,24 @@ RUN yum install httpd -y
 RUN yum install mod_php74 php74-cli php74-fpm \
     php74-mysqlnd php74-devel php74-gd php74-mbstring \
     php74-xml php74-bcmath php74-json -y
+COPY etc/httpd/conf.d/00_vhost.conf /etc/httpd/conf.d
 
 RUN curl -d "platform=CentOS_7" -X POST https://shibboleth.net/cgi-bin/sp_repo.cgi > /etc/yum.repos.d/shibboleth.repo
 RUN yum-config-manager --enable shibboleth
 RUN yum update -y
 RUN yum install shibboleth -y
-COPY etc/* etc
-RUN ["/usr/sbin/shibd"]
+COPY etc/shibboleth/* etc/shibboleth
+RUN cp /etc/shibboleth/shibd-redhat /etc/init.d/shibd 
+RUN chmod u+x /etc/init.d/shibd
 
+RUN yum install mod_ssl openssl -y
+# RUN openssl genrsa -des3 -passout pass:x -out server.pass.key 2048
+# RUN openssl rsa -passin pass:x -in server.pass.key -out server.key
+# RUN rm server.pass.key
+# RUN openssl req -new -key server.key -out server.csr -subj "CN=localhost"
+# RUN openssl x509 -req -days 365 -in server.csr -signkey /etc/pki/tls/private/server.key -out /etc/pki/tls/certs/server.crt
 
 COPY app /var/www/html
-CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
-
-
+COPY start.sh /
+CMD ["/start.sh"]
 EXPOSE 80 443
