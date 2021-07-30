@@ -1,0 +1,7 @@
+services:
+    demosp:
+      build: .
+      domainname: sp
+      ports:
+        - "80:80"
+        - "443:443"
