@@ -4,7 +4,7 @@
 
     <OutOfProcess tranLogFormat="%u|%s|%IDP|%i|%ac|%t|%attr|%n|%b|%E|%S|%SS|%L|%UA|%a" />
 
-    <ApplicationDefaults entityID="https://sp.example.org/shibboleth"
+    <ApplicationDefaults entityID="idme-demo-sp"
         REMOTE_USER="eppn subject-id pairwise-id persistent-id"
         cipherSuites="DEFAULT:!EXP:!LOW:!aNULL:!eNULL:!DES:!IDEA:!SEED:!RC4:!3DES:!kRSA:!SSLv2:!SSLv3:!TLSv1:!TLSv1.1">
 
@@ -12,7 +12,7 @@
                   checkAddress="false" handlerSSL="true" cookieProps="https"
                   redirectLimit="exact">
 
-            <SSO entityID="https://idp.example.org/idp/shibboleth">
+            <SSO entityID="https://idpdev.idmintegration.com/idp/shibboleth">
               SAML2
             </SSO>
 
@@ -31,8 +31,8 @@
 
         <AttributeExtractor type="XML" validate="true" reloadChanges="false" path="attribute-map.xml"/>
         <AttributeFilter type="XML" validate="true" path="attribute-policy.xml"/>
-        <CredentialResolver type="File" use="signing" key="sp-signing-key.pem" certificate="sp-signing-cert.pem"/>
-        <CredentialResolver type="File" use="encryption" key="sp-encrypt-key.pem" certificate="sp-encrypt-cert.pem"/>
+        <CredentialResolver type="File" use="signing" key="sp-signing.key" certificate="sp-signing.crt"/>
+        <CredentialResolver type="File" use="encryption" key="sp-encrypt.key" certificate="sp-encrypt.crt"/>
         
     </ApplicationDefaults>
     
