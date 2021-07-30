@@ -1,3 +1,3 @@
 #!/bin/sh
-/etc/init.d/shibd start 
+LD_LIBRARY_PATH=/opt/shibboleth/lib64 /etc/init.d/shibd start 
 /usr/sbin/httpd -D FOREGROUND
