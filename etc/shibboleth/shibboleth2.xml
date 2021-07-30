@@ -12,23 +12,23 @@
                   checkAddress="false" handlerSSL="true" cookieProps="https"
                   redirectLimit="exact">
 
-            <SSO entityID="https://idp.example.org/idp/shibboleth"
-                 discoveryProtocol="SAMLDS" discoveryURL="https://ds.example.org/DS/WAYF">
+            <SSO entityID="https://idp.example.org/idp/shibboleth">
               SAML2
             </SSO>
 
             <Logout>SAML2 Local</Logout>
             <LogoutInitiator type="Admin" Location="/Logout/Admin" acl="127.0.0.1 ::1" />
           
-            <Handler type="MetadataGenerator" Location="/Metadata" signing="false"/>
-            <Handler type="Status" Location="/Status" acl="127.0.0.1 ::1"/>
-            <Handler type="Session" Location="/Session" showAttributeValues="false"/>
+            <Handler type="MetadataGenerator" Location="/Metadata" signing="true"/>
+            <Handler type="Status" Location="/Status" />
+            <Handler type="Session" Location="/Session" showAttributeValues="true"/>
             <Handler type="DiscoveryFeed" Location="/DiscoFeed"/>
         </Sessions>
 
         <Errors supportContact="support@idmengineering.com" helpLocation="/about.php" />
 
-        <MetadataProvider type="XML" validate="true" path="partner-metadata.xml"/>
+        <MetadataProvider type="XML" validate="true" url="https://idpdev.idmintegration.com/idp/shibboleth" backingFilePath="idpdev-metadata.xml"/>
+
         <AttributeExtractor type="XML" validate="true" reloadChanges="false" path="attribute-map.xml"/>
         <AttributeFilter type="XML" validate="true" path="attribute-policy.xml"/>
         <CredentialResolver type="File" use="signing" key="sp-signing-key.pem" certificate="sp-signing-cert.pem"/>
