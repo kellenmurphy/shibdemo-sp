@@ -29,5 +29,5 @@ RUN yum install mod_ssl openssl -y
 
 COPY app /var/www/html
 COPY start.sh /
-CMD ["/start.sh"]
+CMD ["/bin/sh /start.sh"]
 EXPOSE 80 443
