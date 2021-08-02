@@ -28,6 +28,6 @@ RUN chmod u+x /etc/init.d/shibd
 RUN yum install mod_ssl openssl -y
 
 COPY app /var/www/html
-COPY start.sh /
-CMD ["/bin/sh /start.sh"]
+COPY start.sh /opt
+CMD ["/bin/sh /opt/start.sh"]
 EXPOSE 80 443
