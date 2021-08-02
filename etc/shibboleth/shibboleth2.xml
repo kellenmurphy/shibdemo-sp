@@ -31,8 +31,8 @@
 
         <AttributeExtractor type="XML" validate="true" reloadChanges="false" path="attribute-map.xml"/>
         <AttributeFilter type="XML" validate="true" path="attribute-policy.xml"/>
-        <CredentialResolver type="File" use="signing" key="sp-signing.key" certificate="sp-signing.crt"/>
-        <CredentialResolver type="File" use="encryption" key="sp-encrypt.key" certificate="sp-encrypt.crt"/>
+        <CredentialResolver type="File" use="signing" key="sp-signing-key.pem" certificate="sp-signing-cert.pem"/>
+        <CredentialResolver type="File" use="encryption" key="sp-encrypt-key.pem" certificate="sp-encrypt-cert.pem"/>
         
     </ApplicationDefaults>
     
