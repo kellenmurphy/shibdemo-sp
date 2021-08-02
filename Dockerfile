@@ -26,11 +26,6 @@ RUN cp /etc/shibboleth/shibd-redhat /etc/init.d/shibd
 RUN chmod u+x /etc/init.d/shibd
 
 RUN yum install mod_ssl openssl -y
-# RUN openssl genrsa -des3 -passout pass:x -out server.pass.key 2048
-# RUN openssl rsa -passin pass:x -in server.pass.key -out server.key
-# RUN rm server.pass.key
-# RUN openssl req -new -key server.key -out server.csr -subj "CN=localhost"
-# RUN openssl x509 -req -days 365 -in server.csr -signkey /etc/pki/tls/private/server.key -out /etc/pki/tls/certs/server.crt
 
 COPY app /var/www/html
 COPY start.sh /

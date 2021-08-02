@@ -4,16 +4,26 @@
 
 There is some degree of configuration of the Shibboleth Service Provider (SP) software in order to functionally integrate with a SAML Identity Provider (IdP).
 
-This very early version of the demo relies upon a static integration with one of the IDM Engineering demo IdPs. 
+## `idpdev` Integration
+
+This very early version of the demo relies upon a static integration with one of the IDM Engineering demo IdPs. Our test IdP at `https://idpdev.idmintegration.com/idp/shibboleth` has an integration formed with this container image when ran on localhost, and will release the following attributes:
+
+- cn
+- eppn
+- givenName
+- mail
+- sn
+- uid
+
+when you use the test account credentials (u: foo / pw: bar). 
 
 # Roadmap
 
-- [ ] Initial Iteration
+- [x] Alpha
     - [x] Self-signed SSL certificate for HTTPS
-    - [ ] Statically defined integration with `idpdev.idmintegration.com`
+    - [x] Statically defined integration with `idpdev.idmintegration.com`
     - [x] runs only on `localhost`
-
-- [ ] Second Iteration
+- [ ] Beta (?)
     - [ ] Support for Azure Container Instances
     - [ ] Support for valid third-party SSL certificate with Let's Encrypt
     - [ ] Support for arbitrary Identity Provider integrations
